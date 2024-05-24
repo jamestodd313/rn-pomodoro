@@ -1,5 +1,5 @@
 {
-  "name": "pomodoro",
+  "name": "react-native-pomodoro",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
