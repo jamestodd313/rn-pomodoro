@@ -5,15 +5,15 @@ export default function Index() {
   return (
     // main view
     <View>
-      <Text>Dashboard</Text>
+      <Text accessibilityRole="header">Dashboard</Text>
       <View>
-        <Text>Timer</Text>
+        <Text accessibilityRole="header">Timer</Text>
       </View>
       <View>
-        <Text>Tasks</Text>
+        <Text accessibilityRole="header">Tasks</Text>
       </View>
       <View>
-      <Text>Stats</Text>
+      <Text accessibilityRole="header">Stats</Text>
       </View>
       <Navbar/>
     </View>
