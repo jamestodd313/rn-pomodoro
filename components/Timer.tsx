@@ -6,8 +6,6 @@ interface TimerTypes {
 }
 
 export default function Timer({display}: TimerTypes){
-  // STATE
-  console.log(display)
 
   // DISPLAY
   if(display === "dashboard"){
