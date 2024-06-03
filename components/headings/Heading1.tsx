@@ -10,7 +10,8 @@ interface propTypes {
 const h1Styles = StyleSheet.create({
   main:{
     fontSize: 38,
-    fontWeight: "600"
+    fontWeight: "600",
+    marginBottom: 16
   } 
 })
 

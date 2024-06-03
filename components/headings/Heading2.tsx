@@ -10,7 +10,8 @@ interface propTypes {
 const h2Styles = StyleSheet.create({
   main:{
     fontSize: 24,
-    fontWeight: "500"
+    fontWeight: "500",
+    marginBottom: 8,
   } 
 })
 
