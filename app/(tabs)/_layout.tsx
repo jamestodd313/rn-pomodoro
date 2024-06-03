@@ -7,12 +7,22 @@ export default ()=> {
       <Tabs.Screen 
         name="dashboard" 
         options={{
-          title: "Home", 
+          title: "Home",
           tabBarIcon: ({color, size, focused})=>(
             focused?
-              <Ionicons name="home" size={size} color={color}/>
+              <Ionicons 
+                name="home" 
+                size={size} 
+                color={color}
+                accessibilityLabel="Home Icon"
+              />
             :
-              <Ionicons name="home-outline" size={size} color={color}/>
+              <Ionicons 
+                name="home-outline" 
+                size={size} 
+                color={color}
+                accessibilityLabel="Home Icon"
+              />
           )
         }}
       />
@@ -22,9 +32,19 @@ export default ()=> {
           title: "Timer",
           tabBarIcon: ({color, size, focused})=>(
             focused?
-              <Ionicons name="timer" size={size} color={color}/>
+              <Ionicons 
+                name="timer" 
+                size={size} 
+                color={color}
+                accessibilityLabel="Timer Icon"
+              />
             :
-              <Ionicons name="timer-outline" size={size} color={color}/>
+              <Ionicons 
+                name="timer-outline" 
+                size={size} 
+                color={color}
+                accessibilityLabel="Timer Icon"
+              />
           )
         }}
       />
@@ -34,9 +54,19 @@ export default ()=> {
           title: "Tasks",
           tabBarIcon: ({color, size, focused})=>(
             focused?
-              <Ionicons name="list" size={size} color={color}/>
+              <Ionicons 
+                name="list" 
+                size={size} 
+                color={color}
+                accessibilityLabel="List Icon"
+              />
             :
-              <Ionicons name="list-outline" size={size} color={color}/>
+              <Ionicons 
+                name="list-outline" 
+                size={size} 
+                color={color}
+                accessibilityLabel="List Icon"
+              />
           )
         }}
       />
@@ -46,9 +76,19 @@ export default ()=> {
           title: "Settings",
           tabBarIcon: ({color,size, focused})=>(
             focused?
-              <Ionicons name="settings" size={size} color={color}/>
+              <Ionicons 
+                name="settings" 
+                size={size} 
+                color={color}
+                accessibilityLabel="Settings Icon"
+              />
             :
-              <Ionicons name="settings-outline" size={size} color={color}/>
+              <Ionicons 
+                name="settings-outline" 
+                size={size} 
+                color={color}
+                accessibilityLabel="Settings Icon"
+              />
           )
         }}
       />
