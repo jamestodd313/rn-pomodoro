@@ -1,14 +1,16 @@
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
 import React from 'react'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 interface propTypes {
-  text: string
+  text: string,
+  func: Function
 }
-const Button: React.FC<propTypes> = ({text}) => {
+const Button: React.FC<propTypes> = ({text, func}) => {
   return (
-    <View>
+    <TouchableOpacity>
       <Text>{text}</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 
