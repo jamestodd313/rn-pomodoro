@@ -6,6 +6,7 @@ import Heading2 from '@/components/headings/Heading2'
 import Timer from '@/components/features/Timer'
 import Tasks from '@/components/features/Tasks'
 import Stats from '@/components/features/Stats'
+import Button from '@/components/elements/Button'
 
 const dashboard = () => {
   return (
@@ -31,6 +32,7 @@ const dashboard = () => {
         <Stats location="dashboard"/>
       </View>
 
+      <Button text="Test Button" func={()=>console.log("pressed")}/>
     </View>
   )
 }
