@@ -5,6 +5,8 @@ import React from 'react'
 interface propTypes {
   location: string
 }
+
+// Component
 const Stats: React.FC<propTypes> = ({location}) => {
   return (
     <View>
