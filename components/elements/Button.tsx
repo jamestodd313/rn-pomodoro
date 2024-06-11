@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text } from 'react-native'
+import { GestureResponderEvent, Pressable, StyleSheet, Text } from 'react-native'
 import React from 'react'
 import { blue, white } from '@/styles/colors'
 
@@ -15,17 +15,22 @@ const buttonStyles = StyleSheet.create({
   pressed: {
     opacity: 0.7,
   },
+  text: {
+    fontWeight: "600",
+    color: white,
+    textAlign: "center"
+  }
 })
 
 // TS INTERFACE
 interface propTypes {
   text: string,
-  func: Function
+  func: (event: GestureResponderEvent)=> void;
 }
 const Button: React.FC<propTypes> = ({text, func}) => {
   return (
-    <Pressable hitSlop={10} onPress={()=>func} style={({ pressed }) => [buttonStyles.universal, pressed ? buttonStyles.pressed : buttonStyles.default]}>
-      <Text style={{color: white, textAlign: "center"}}>{text}</Text>
+    <Pressable hitSlop={10} onPress={func} style={({ pressed }) => [buttonStyles.universal, pressed ? buttonStyles.pressed : buttonStyles.default]}>
+      <Text style={buttonStyles.text}>{text}</Text>
     </Pressable>
   )
 }
