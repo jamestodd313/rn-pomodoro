@@ -25,7 +25,7 @@ interface propTypes {
 const Button: React.FC<propTypes> = ({text, func}) => {
   return (
     <Pressable hitSlop={10} onPress={()=>func} style={({ pressed }) => [buttonStyles.universal, pressed ? buttonStyles.pressed : buttonStyles.default]}>
-      <Text style={{color: white}}>{text}</Text>
+      <Text style={{color: white, textAlign: "center"}}>{text}</Text>
     </Pressable>
   )
 }
