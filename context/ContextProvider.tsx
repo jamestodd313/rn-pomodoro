@@ -10,7 +10,7 @@ interface TimerContextTypes {
   pauseTimer: Function,
   skipTimer: Function
 }
-export const TimerContext = createContext<TimerContextTypes | null>({
+export const TimerContext = createContext<TimerContextTypes>({
   timeRemaining: 0,
   isRunning: false,
   timerType: "focus", // timer types: focus, short break, long break
