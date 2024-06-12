@@ -1,6 +1,16 @@
 import { createContext, useState } from "react";
 
-export const TimerContext = createContext({
+interface TimerContextTypes {
+  timeRemaining: number,
+  isRunning: boolean,
+  timerType: "focus" | "short break" | "long break",
+  focusCompleted: number,
+  breaksCompleted: number,
+  startTimer: Function,
+  pauseTimer: Function,
+  skipTimer: Function
+}
+export const TimerContext = createContext<TimerContextTypes | null>({
   timeRemaining: 0,
   isRunning: false,
   timerType: "focus", // timer types: focus, short break, long break

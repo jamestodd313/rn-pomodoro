@@ -11,8 +11,7 @@ interface propTypes {
 
 // Component
 const Timer: React.FC<propTypes> = ({location}) => {
-  let {timerType, timeRemaining, isRunning, focusCompleted, breaksCompleted} = useContext(TimerContext)
-
+  let {timerType, timeRemaining, isRunning, focusCompleted, breaksCompleted} = useContext(TimerContext);
   return (
       <View>
         {location === "dashboard" ? (
