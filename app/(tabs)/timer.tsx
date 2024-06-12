@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React, { createContext } from 'react'
+import React from 'react'
 import { layoutStyles } from '@/styles/layout'
 import Heading1 from '@/components/headings/Heading1'
 import Timer from '@/components/features/Timer'
