@@ -32,7 +32,6 @@ const dashboard = () => {
         <Stats location="dashboard"/>
       </View>
 
-      <Button text="Test Button" func={()=>console.log("pressed")}/>
     </View>
   )
 }
