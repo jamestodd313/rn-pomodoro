@@ -11,7 +11,7 @@ interface propTypes {
 
 // Component
 const Timer: React.FC<propTypes> = ({location}) => {
-  let {timerType, timeRemaining, isRunning, focusCompleted, breaksCompleted} = useContext(TimerContext);
+  let {timerType, timeRemaining, isRunning, focusCompleted, breaksCompleted, startTimer, pauseTimer, skipTimer} = useContext(TimerContext);
   return (
       <View>
         {location === "dashboard" ? (
@@ -22,8 +22,21 @@ const Timer: React.FC<propTypes> = ({location}) => {
         ) : (
           // Timer Page Timer Component
           <View>
-            <Text>Timer Page Timer</Text>
-            {/* <Button text={isRunning ? "Pause" : "Start"} func={!isRunning ? startTimer : pauseTimer}/> */}
+            <Text>{timeRemaining}</Text>
+
+            {/* START / PAUSE BUTTON */}
+            <Button 
+              text={isRunning ? "Pause" : "Start"} 
+              func={!isRunning ? startTimer : pauseTimer}
+            />
+            
+            {/* SKIP BUTTON -- IF NEEDED */}
+            {isRunning ? 
+              <Button 
+                text="Skip" 
+                func={skipTimer}
+              /> : null}
+
           </View>
         )}
       </View>
