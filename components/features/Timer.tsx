@@ -6,6 +6,7 @@ import Button from '../elements/Button'
 import { TimerContext } from '@/context/ContextProvider'
 import Heading2 from '../headings/Heading2'
 import { gray, red } from '@/styles/colors'
+import { convertTime } from '@/hooks/convertTime'
 
 // Styles
 const styles = StyleSheet.create({
@@ -27,16 +28,16 @@ const Timer: React.FC<propTypes> = ({location}) => {
   return (
       <View>
         {location === "dashboard" ? (
-          // Dashboard Page Timer Component
+          // Dashboard Page Timer
           <View>
             <Text>Dashboard Timer</Text> 
           </View>
         ) : (
-          // Timer Page Timer Component
+          // Timer Page Timer
           <View>
             <Heading2 text={timerType.toUpperCase()} justify="center"/>
             <Text style={{textAlign: "center"}}>Time Remaining</Text>
-            <Text style={styles.timeDisplay}>{timeRemaining}</Text>
+            <Text style={styles.timeDisplay}>{convertTime(timeRemaining)}</Text>
             {/*  CONTROL BUTTONS */}
             <Button
               text={"Reset"}
