@@ -39,16 +39,18 @@ const Timer: React.FC<propTypes> = ({location}) => {
             <Text style={{textAlign: "center"}}>Time Remaining</Text>
             <Text style={styles.timeDisplay}>{convertTime(timeRemaining)}</Text>
             {/*  CONTROL BUTTONS */}
-            <Button
-              text={"Reset"}
-              func={pauseTimer}
-              styles={{backgroundColor: "#d5d5d5", color: "#616161"}}
-            />
-            <Button
-              text={"Skip"}
-              func={skipTimer}
-              styles={{backgroundColor: red}}
-            />
+            <View style={{flexDirection: "row", justifyContent: 'space-between', marginBottom: 8}}>
+              <Button
+                text={"Reset"}
+                func={pauseTimer}
+                styles={{backgroundColor: "#d5d5d5", color: "#616161", flex:0.5, marginRight: 4}}
+              />
+              <Button
+                text={"Skip"}
+                func={skipTimer}
+                styles={{backgroundColor: red, flex:0.5 , marginLeft: 4}}
+              />
+            </View>
             <Button 
               text={isRunning ? "Pause" : "Start"} 
               func={!isRunning ? startTimer : pauseTimer}
