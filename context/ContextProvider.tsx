@@ -24,35 +24,41 @@ export const TimerContext = createContext<TimerContextTypes>({
 
 const ContextProvider = ({children}: {children: React.ReactNode})=> {
   // STATE
-  const [timeRemaining, setTimeRemaining] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(1500000);
   const [isRunning, setIsRunning] = useState(false);
   const [timerType, setTimerType] = useState("focus");
   const [focusCompleted, setFocusCompleted] = useState(0);
   const [breaksCompleted, setBreaksCompleted] = useState(0);
 
+  // INTERVAL VAR
+  let countdown: ReturnType<typeof setInterval>;
+
+  // TIMER FUNCTIONS
   const startTimer = ()=> {
     console.log("start");
-    setIsRunning(!isRunning);
   }
   const pauseTimer = ()=> {
     console.log("pause");
     setIsRunning(!isRunning);
+    handleEnd();
   }
   const skipTimer = ()=> {
-    console.log("skip");
-    setIsRunning(!isRunning);
+    handleEnd();
+  }
+  const handleEnd = ()=> {
+    clearInterval(countdown);
+    setIsRunning(false);
   }
   return (
     <TimerContext.Provider value={{
       timeRemaining,
       isRunning,
-      timerType,
+      timerType: timerType as "focus" | "short break" | "long break",
       focusCompleted,
       breaksCompleted,
       startTimer,
       pauseTimer,
       skipTimer
-
     }}>
       {children}
     </TimerContext.Provider>
