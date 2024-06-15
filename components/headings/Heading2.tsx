@@ -1,5 +1,6 @@
 import { Text, StyleSheet } from 'react-native'
 import React from 'react'
+import { toTitleCase } from '@/hooks/toTitleCase'
 
 // TS Interface
 interface propTypes {
@@ -24,7 +25,7 @@ const Heading2: React.FC<propTypes> = ({text, justify})=> {
       justify === 'center' && { textAlign: 'center' },
       justify === 'left' && { textAlign: 'left' },
       justify === 'right' && { textAlign: 'right' },
-    ]}>{text}</Text>
+    ]}>{toTitleCase(text)}</Text>
   )
 }
 
