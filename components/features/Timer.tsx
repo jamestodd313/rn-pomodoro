@@ -1,8 +1,20 @@
-import { View, Text } from 'react-native'
+
+
+import { View, Text, StyleSheet } from 'react-native'
 import React, { useContext } from 'react'
 import Button from '../elements/Button'
 import { TimerContext } from '@/context/ContextProvider'
+import Heading2 from '../headings/Heading2'
+import { gray, red } from '@/styles/colors'
 
+// Styles
+const styles = StyleSheet.create({
+  timeDisplay: {
+    fontSize: 72,
+    fontWeight: "800",
+    textAlign: "center"
+  }
+})
 
 // TS Interface
 interface propTypes {
@@ -22,9 +34,20 @@ const Timer: React.FC<propTypes> = ({location}) => {
         ) : (
           // Timer Page Timer Component
           <View>
-            <Text>{timeRemaining}</Text>
-
-            {/* START / PAUSE BUTTON */}
+            <Heading2 text={timerType.toUpperCase()} justify="center"/>
+            <Text style={{textAlign: "center"}}>Time Remaining</Text>
+            <Text style={styles.timeDisplay}>{timeRemaining}</Text>
+            {/*  CONTROL BUTTONS */}
+            <Button
+              text={"Reset"}
+              func={pauseTimer}
+              styles={{backgroundColor: "#d5d5d5", color: "#616161"}}
+            />
+            <Button
+              text={"Skip"}
+              func={skipTimer}
+              styles={{backgroundColor: red}}
+            />
             <Button 
               text={isRunning ? "Pause" : "Start"} 
               func={!isRunning ? startTimer : pauseTimer}
