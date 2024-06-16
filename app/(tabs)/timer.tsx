@@ -13,7 +13,6 @@ const timer = () => {
     <View style={layoutStyles.main}>
       <Heading1 text="Timer"/>
       <Timer location="page"/>
-      <Stats location="timer"/>
     </View>
   )
 }
