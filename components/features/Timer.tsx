@@ -36,7 +36,7 @@ const Timer: React.FC<propTypes> = ({location}) => {
             borderColor: "black",
             borderWidth: 1,
             borderRadius: 8,
-            marginBottom: 16
+            marginBottom: 32
           }}>
             <Text style={{
               fontSize: 17,
