@@ -24,14 +24,14 @@ const buttonStyles = StyleSheet.create({
 
 interface propTypes {
   text: string,
-  func: (event: GestureResponderEvent)=> void,
+  func?: (event: GestureResponderEvent)=> void,
   styles?: StyleProp<ViewStyle> | StyleProp<TextStyle>
 }
 const Button: React.FC<propTypes> = ({text, func, styles}) => {
   return (
-    <Pressable hitSlop={10} onPress={func} style={({ pressed }) => [buttonStyles.universal, pressed ? buttonStyles.pressed : buttonStyles.default, styles]}>
+    <Pressable hitSlop={10} onPress={func ? func : ()=>console.warn(`No function has been passed to ${text} button.`)} style={({ pressed }) => [buttonStyles.universal, pressed ? buttonStyles.pressed : buttonStyles.default, styles]}>
       <View style={{alignItems: "center", justifyContent: "center"}}>
-        <Text style={[buttonStyles.text, styles, {flex: "unset"}]}>{text}</Text>
+        <Text style={[buttonStyles.text, styles, {flex: 0}]}>{text}</Text>
       </View>
     </Pressable>
   )
