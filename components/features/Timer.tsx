@@ -1,12 +1,16 @@
-
-
 import { View, Text, StyleSheet } from 'react-native'
 import React, { useContext } from 'react'
 import Button from '../elements/Button'
 import { TimerContext } from '@/context/ContextProvider'
 import Heading2 from '../headings/Heading2'
-import { gray, red } from '@/styles/colors'
+import { blue, gray, red } from '@/styles/colors'
 import { convertTime } from '@/hooks/convertTime'
+import * as Progress from 'react-native-progress'
+
+// Functions
+const calculateProgress = (ms: number)=> {
+  return 1 - (ms / 1500000);
+}
 
 // Styles
 const styles = StyleSheet.create({
@@ -32,11 +36,14 @@ const Timer: React.FC<propTypes> = ({location}) => {
         {location === "dashboard" ? (
           // Dashboard Page Timer
           <View style={{
+            backgroundColor: gray,
             padding: 16,
-            borderColor: "black",
-            borderWidth: 1,
             borderRadius: 8,
-            marginBottom: 32
+            marginBottom: 32,
+            shadowOffset: {width:0, height: 4},
+            shadowRadius: 4,
+            shadowColor: "black",
+            shadowOpacity: 0.2
           }}>
             <Text style={{
               fontSize: 17,
@@ -49,12 +56,15 @@ const Timer: React.FC<propTypes> = ({location}) => {
                 justifyContent: "space-between"
               }}
             >
-              <Button text="Start"/>
+              <Button text="Start" func={()=> console.log("start")}/>
               <Text style={{
                 fontSize: 40,
                 fontWeight: 600
               }}>{convertTime(timeRemaining)}</Text>
-              <Button text="Skip" styles={{backgroundColor: red}}/>
+              <Button text="Skip" func={()=> console.log("skip")} styles={{backgroundColor: red}}/>
+            </View>
+            <View style={{marginTop: 24}}>
+              <Progress.Bar progress={calculateProgress(timeRemaining)} width={null} height={12} borderRadius={12} borderColor={blue} color={blue}/>  
             </View>
           </View>
         ) : (
