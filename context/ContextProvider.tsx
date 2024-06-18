@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { GestureResponderEvent } from "react-native";
 
 interface TimerContextTypes {
@@ -36,19 +36,33 @@ const ContextProvider = ({children}: {children: React.ReactNode})=> {
   // TIMER FUNCTIONS
   const startTimer = ()=> {
     console.log("start");
+    if(!isRunning){
+      setIsRunning(true);
+    } else return;
   }
+
   const pauseTimer = ()=> {
-    console.log("pause");
-    setIsRunning(!isRunning);
     handleEnd();
   }
+
   const skipTimer = ()=> {
     handleEnd();
   }
+
   const handleEnd = ()=> {
     clearInterval(countdown);
     setIsRunning(false);
   }
+
+  useEffect(()=> {
+    console.log(`isRunning is currently ${isRunning}`);
+    if(isRunning){
+      countdown = setInterval(()=>{
+        setTimeRemaining((prevTime)=> Math.max(prevTime - 1000));
+      }, 1000)
+    } else return;
+  }, [isRunning])
+
   return (
     <TimerContext.Provider value={{
       timeRemaining,
