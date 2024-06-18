@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { GestureResponderEvent } from "react-native";
 
 interface TimerContextTypes {
@@ -9,7 +9,8 @@ interface TimerContextTypes {
   breaksCompleted: number,
   startTimer: (event: GestureResponderEvent)=> void,
   pauseTimer: (event: GestureResponderEvent)=> void,
-  skipTimer: (event: GestureResponderEvent)=> void
+  skipTimer: (event: GestureResponderEvent)=> void,
+  pauseCallback: (event: GestureResponderEvent)=> void | undefined;
 }
 export const TimerContext = createContext<TimerContextTypes>({
   timeRemaining: 0,
@@ -19,7 +20,8 @@ export const TimerContext = createContext<TimerContextTypes>({
   breaksCompleted: 0,
   startTimer: ()=> console.log("start"),
   pauseTimer: ()=> console.log("pause"),
-  skipTimer: ()=> console.log("skip")
+  skipTimer: ()=> console.log("skip"),
+  pauseCallback: ()=> console.log("pause callback")
 })
 
 const ContextProvider = ({children}: {children: React.ReactNode})=> {
@@ -30,19 +32,18 @@ const ContextProvider = ({children}: {children: React.ReactNode})=> {
   const [focusCompleted, setFocusCompleted] = useState(0);
   const [breaksCompleted, setBreaksCompleted] = useState(0);
 
-  // INTERVAL VAR
-  let countdown: ReturnType<typeof setInterval>;
+  // Interval ID Ref
+  const intervalID = useRef(null);
 
   // TIMER FUNCTIONS
   const startTimer = ()=> {
-    console.log("start");
-    if(!isRunning){
-      setIsRunning(true);
-    } else return;
+    if(!isRunning) setIsRunning(true);
+    else return
   }
 
   const pauseTimer = ()=> {
-    handleEnd();
+    if(isRunning) setIsRunning(false);
+    else console.warn("plz stop tryna break stuff");
   }
 
   const skipTimer = ()=> {
@@ -50,17 +51,16 @@ const ContextProvider = ({children}: {children: React.ReactNode})=> {
   }
 
   const handleEnd = ()=> {
-    clearInterval(countdown);
+    clearInterval(intervalID.current);
     setIsRunning(false);
   }
 
   useEffect(()=> {
-    console.log(`isRunning is currently ${isRunning}`);
     if(isRunning){
-      countdown = setInterval(()=>{
+      intervalID.current = setInterval(()=>{
         setTimeRemaining((prevTime)=> Math.max(prevTime - 1000));
       }, 1000)
-    } else return;
+    } else clearInterval(intervalID.current);
   }, [isRunning])
 
   return (
@@ -72,7 +72,7 @@ const ContextProvider = ({children}: {children: React.ReactNode})=> {
       breaksCompleted,
       startTimer,
       pauseTimer,
-      skipTimer
+      skipTimer,
     }}>
       {children}
     </TimerContext.Provider>

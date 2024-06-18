@@ -56,7 +56,7 @@ const Timer: React.FC<propTypes> = ({location}) => {
                 justifyContent: "space-between"
               }}
             >
-              <Button text="Start" func={()=> console.log("start")}/>
+              <Button text={isRunning ? "Pause" : "Start"} func={isRunning ? pauseTimer : startTimer}/>
               <Text style={{
                 fontSize: 40,
                 fontWeight: 600
