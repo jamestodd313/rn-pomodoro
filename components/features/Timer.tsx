@@ -61,7 +61,7 @@ const Timer: React.FC<propTypes> = ({location}) => {
                 fontSize: 40,
                 fontWeight: 600
               }}>{convertTime(timeRemaining)}</Text>
-              <Button text="Skip" func={()=> console.log("skip")} styles={{backgroundColor: red}}/>
+              <Button text="Skip" func={skipTimer} styles={{backgroundColor: red}}/>
             </View>
             <View style={{marginTop: 24}}>
               <Progress.Bar progress={calculateProgress(timeRemaining)} width={null} height={12} borderRadius={12} borderColor={blue} color={blue}/>  

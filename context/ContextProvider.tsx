@@ -10,7 +10,6 @@ interface TimerContextTypes {
   startTimer: (event: GestureResponderEvent)=> void,
   pauseTimer: (event: GestureResponderEvent)=> void,
   skipTimer: (event: GestureResponderEvent)=> void,
-  pauseCallback: (event: GestureResponderEvent)=> void | undefined;
 }
 export const TimerContext = createContext<TimerContextTypes>({
   timeRemaining: 0,
@@ -21,7 +20,6 @@ export const TimerContext = createContext<TimerContextTypes>({
   startTimer: ()=> console.log("start"),
   pauseTimer: ()=> console.log("pause"),
   skipTimer: ()=> console.log("skip"),
-  pauseCallback: ()=> console.log("pause callback")
 })
 
 const ContextProvider = ({children}: {children: React.ReactNode})=> {
@@ -47,19 +45,26 @@ const ContextProvider = ({children}: {children: React.ReactNode})=> {
   }
 
   const skipTimer = ()=> {
-    handleEnd();
+    if(isRunning && timeRemaining > 0) handleEnd();
+    else return;
   }
 
   const handleEnd = ()=> {
     clearInterval(intervalID.current);
     setIsRunning(false);
+    console.log("timer ended");
   }
 
   useEffect(()=> {
     if(isRunning){
-      intervalID.current = setInterval(()=>{
-        setTimeRemaining((prevTime)=> Math.max(prevTime - 1000));
-      }, 1000)
+      if(timeRemaining > 0) {
+        intervalID.current = setInterval(()=>{
+          setTimeRemaining((prevTime)=> Math.max(prevTime - 1000));
+        }, 1000)
+      } else {
+        handleEnd();
+      }
+
     } else clearInterval(intervalID.current);
   }, [isRunning])
 
