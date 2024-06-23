@@ -62,9 +62,10 @@ const ContextProvider = ({children}: {children: React.ReactNode})=> {
           setTimeRemaining((prevTime)=> Math.max(prevTime - 1000));
         }, 1000)
       } else {
+        if(timerType === "focus") setFocusCompleted((prevCount)=> prevCount + 1);
+        else if(timerType === "short break" || "long break") setBreaksCompleted((prevCount)=> prevCount + 1);
         handleEnd();
       }
-
     } else clearInterval(intervalID.current);
   }, [isRunning])
 
