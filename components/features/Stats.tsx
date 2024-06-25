@@ -21,7 +21,11 @@ const Stats: React.FC<propTypes> = ({location}) => {
           <Stat stat={0} label="Tasks Remaining"/>
         </View></>
       ) : location === "timer" ? (
-        <Text>Timer Stats</Text>
+        <><View style={{flexDirection: "row", justifyContent: "space-between"}}>
+          <Stat stat={0} label="Minutes Worked"/>
+          <Stat stat={0} label="Focus Sessions"/>
+          <Stat stat={0} label="Breaks Taken"/>
+        </View></>
       ) : location === "tasks" ? (
         <Text>Tasks stats</Text>
       ) : (

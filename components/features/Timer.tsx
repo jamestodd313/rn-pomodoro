@@ -6,6 +6,7 @@ import Heading2 from '../headings/Heading2'
 import { blue, gray, red } from '@/styles/colors'
 import { convertTime } from '@/hooks/convertTime'
 import * as Progress from 'react-native-progress'
+import Stats from './Stats'
 
 // Functions
 const calculateProgress = (ms: number)=> {
@@ -75,6 +76,7 @@ const Timer: React.FC<propTypes> = ({location}) => {
               <Text style={{textAlign: "center"}}>Time Remaining</Text>
               <Text style={styles.timeDisplay}>{convertTime(timeRemaining)}</Text>
             </View>
+            <Stats location='timer'/>
             {/*  CONTROL BUTTONS */}
             <View>
               <View style={{flexDirection: "row", justifyContent: 'space-between', marginBottom: 8}}>
