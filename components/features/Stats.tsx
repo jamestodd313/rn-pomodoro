@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
 // Component
 const Stats: React.FC<propTypes> = ({location}) => {
   let {focusCompleted, breaksCompleted} = useContext(TimerContext);
+  const calculateMinutes = ()=> {
+    return Number(convertTime(focusCompleted * 1500000).split(":")[0]);
+  }
   return (
     <View>
       {location === "dashboard" ? (
@@ -30,7 +33,7 @@ const Stats: React.FC<propTypes> = ({location}) => {
         </View></>
       ) : location === "timer" ? (
         <><View style={styles.container}>
-          <Stat stat={0} label="Minutes Worked"/>
+          <Stat stat={calculateMinutes()} label="Minutes Worked"/>
           <Stat stat={0} label="Focus Sessions"/>
           <Stat stat={0} label="Breaks Taken"/>
         </View></>
