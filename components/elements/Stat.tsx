@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "800",
     color: white,
-    marginBottom: 8
+    marginBottom: 8,
+    minWidth: 500
   },
   label: {
     fontSize: 12,
