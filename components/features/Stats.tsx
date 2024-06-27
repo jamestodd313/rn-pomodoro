@@ -34,8 +34,8 @@ const Stats: React.FC<propTypes> = ({location}) => {
       ) : location === "timer" ? (
         <><View style={styles.container}>
           <Stat stat={calculateMinutes()} label="Minutes Worked"/>
-          <Stat stat={0} label="Focus Sessions"/>
-          <Stat stat={0} label="Breaks Taken"/>
+          <Stat stat={focusCompleted} label="Focus Sessions"/>
+          <Stat stat={breaksCompleted} label="Breaks Taken"/>
         </View></>
       ) : location === "tasks" ? (
         <><View style={styles.container}>
